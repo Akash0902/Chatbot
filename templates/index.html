@@ -1,0 +1,89 @@
+<!DOCTYPE hmtl>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device=width, initial=scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <style>
+        body{
+            font-family: monospace;
+
+        }
+        #chatbot{
+            margin-left:auto:
+            margin-right:auto;
+            width: 40%;
+            margin-top: 50px;
+
+        }
+        .botText{
+            font-family:monospace;
+            font-size:16px;
+            text-align:left;
+            line-height:25px;
+            color:blue;
+
+        }
+        #UserInput{
+
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-top: 50px;
+        }
+        #textInput{
+            border-bottom: 3px solid color:blue;
+            font-family: monospace;
+            font-size: 16px;
+
+        }
+        #buttonInput{
+            padding: 5px;
+            font-family:monospace;
+            font-size: 16px;
+        }
+        .userText{
+           text-align:right; 
+        }
+
+    </style>
+
+</head>
+<body>
+    <h1>Chatbot App</h1>
+    <div>
+        <div id="chatbox">
+            <p class="bot Text"><span>Hi there </span></p>
+
+
+        </div>
+        <div id="UserInput">
+            <input id="textInput" type="text" name="userMessage" placeholder="Type Your Message" />
+            <input id="buttonInput" type="submit" value="send"/>
+        </div>
+    </div>
+  <script>
+    function getUserResponse(){
+        var userText = $('#textInput').val();
+        var userHTML = "<p class='userText'>User: <span>"+userText+"</span></p>";
+        $('#textInput').val("");
+        $('#chatbox').append(userHTML);
+        document.getElemenentById("UserInput").scrollIntoView({block:'start',behavior:'smooth'});
+        $.get("/get",{userMessage: userText}).done(function(data){
+            var botHTML = "<p class = 'botText'>Chatbot: <span>"+data+"</span></p>"
+            $('#chatbox').append(botHTML);
+        });
+    }
+    $("#textInput").keypress(function(e){
+        if(e.which == 13){
+            getUserResponse();
+
+        }
+    });
+    $('#buttonInput').click(function(){
+        getUserResponse();
+    })
+  </script>
+</body>
+</html>
