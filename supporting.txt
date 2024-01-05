@@ -1,0 +1,7 @@
+1) Install all the libraries mention in requirements.txt
+2) Python and html files are already linked
+3) Steps to execute:
+   i)Run the python file
+   ii) It will provide local host address
+   iii) Paste the address in web browser
+   iv) chatbot is ready to use 

@@ -1,0 +1,6 @@
+chatterbot
+chatterbot.corpus
+spacy 
+use python 3.7 and below version 
+flask 
+requests 
